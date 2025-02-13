@@ -54,7 +54,14 @@ Pour chaque exercice :
 _Votre réponse pour l'exercice 1 :_
 ```
 Expliquez votre solution ici
+La solution filtre les produits par title en fonction du searchTerm avant de les afficher. La comparaison est insensible à la casse pour améliorer la recherche. 
+useDebounce est utilisé pour limiter le nombre de requêtes API en attendant que l'utilisateur ait fini de taper, améliorant ainsi les performances et évitant des appels inutiles.
 [Ajoutez vos captures d'écran]
+
+<img src="/captures/search.png">
+<img src="/captures/search1.png">
+
+
 ```
 
 ### Exercice 2 : Context et Internationalisation
