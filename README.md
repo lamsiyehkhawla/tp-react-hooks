@@ -59,7 +59,10 @@ useDebounce est utilisé pour limiter le nombre de requêtes API en attendant qu
 [Ajoutez vos captures d'écran]
 
 <img src="/captures/search.png">
+![search](https://github.com/user-attachments/assets/05229ebe-33f2-4c85-a043-7ea34223db94)
+
 <img src="/captures/search1.png">
+![search1](https://github.com/user-attachments/assets/cf4b799d-a837-4197-bef9-712c3521d607)
 
 
 ```
