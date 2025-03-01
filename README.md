@@ -86,10 +86,15 @@ Cette solution est bonne pour les traductions car elle sépare les paramètres d
 - [ ] 3.3 Documenter votre solution ici
 
 _Votre réponse pour l'exercice 3 :_
+
 ```
+useDebounce aide à gérer les performances en contrôlant quand appliquer les changements, basé sur un délai après que l'utilisateur ait cessé d'interagir.
+Le hook useLocalStorage est utilisé pour enregistrer et récupérer des données dans le localStorage du navigateur. Cela permet de conserver des informations même après un rechargement de la page.
+useLocalStorage permet de stocker une valeur dans le localStorage du navigateur et de la récupérer même après le rechargement de la page. le cas de search
 Expliquez votre solution ici
 [Ajoutez vos captures d'écran]
 ```
+<img src="/captures/localStorage.png">
 
 ### Exercice 4 : Gestion Asynchrone et Pagination
 #### Objectif : Gérer le chargement et la pagination
