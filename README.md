@@ -106,9 +106,11 @@ Expliquez votre solution ici
 _Votre réponse pour l'exercice 4 :_
 ```
 Expliquez votre solution ici
+ la pagination pour diviser les produits en plusieurs pages et ajoute un bouton de rechargement pour actualiser la liste des produits. Elle utilise aussi les contextes de thème et de langue pour adapter l'affichage en fonction des préférences de l'utilisateur.
+ 
 [Ajoutez vos captures d'écran]
 ```
-
+<img src="/captures/exercice4.png">
 ## Rendu
 
 - Ajoutez l'URL de votre dépôt Github dans  **Classroom** et envoyer la réponse dès le démarage de votre projet.

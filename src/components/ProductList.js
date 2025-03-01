@@ -14,19 +14,30 @@ const ProductList = ({ searchTerm }) => {
       error: "Error: ",
       noProductsFound: "No products found.",
       priceLabel: "Price: ",
+      reload: "Reload",
+      next: "Next",
+      prev: "Previous",
     },
     fr: {
       loading: "Chargement...",
       error: "Erreur: ",
       noProductsFound: "Aucun produit trouvé.",
       priceLabel: "Prix: ",
+      reload: "Recharger",
+      next: "Suivant",
+      prev: "Précédent",
     },
   };
 
   const { 
     products, 
     loading, 
-    error,
+    error, 
+    reloadProducts, 
+    nextPage, 
+    prevPage, 
+    page, 
+    totalPages,
   } = useProductSearch(searchTerm);
 
   if (loading) return (
@@ -77,6 +88,26 @@ const ProductList = ({ searchTerm }) => {
         ) : (
           <p className="text-center">{translations[language].noProductsFound}</p>
         )}
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="d-flex justify-content-between my-4">
+        <button className="btn btn-secondary" onClick={prevPage} disabled={page === 1}>
+          {translations[language].prev}
+        </button>
+        <span>
+          Page {page} of {totalPages}
+        </span>
+        <button className="btn btn-secondary" onClick={nextPage} disabled={page === totalPages}>
+          {translations[language].next}
+        </button>
+      </div>
+
+      {/* Reload Button */}
+      <div className="text-center">
+        <button className="btn btn-primary" onClick={reloadProducts}>
+          {translations[language].reload}
+        </button>
       </div>
     </div>
   );
