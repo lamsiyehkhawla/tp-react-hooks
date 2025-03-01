@@ -6,32 +6,31 @@ const useProductSearch = (searchTerm) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [page, setPage] = useState(1); // Pagination state
-  const [totalPages, setTotalPages] = useState(1); // Total pages state
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 10; // Number of products per page
+
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  // Function to fetch products
-  const fetchProducts = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(`https://api.daaif.net/products?page=${page}&query=${debouncedSearchTerm}`);
-      if (!response.ok) throw new Error('Erreur réseau');
-      const data = await response.json();
-      setProducts(data.products);
-      setTotalPages(data.totalPages); // Set total pages if available from the API response
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Fetch products initially
   useEffect(() => {
-    fetchProducts();
-  }, [debouncedSearchTerm, page]); // Fetch products when searchTerm or page changes
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('https://api.daaif.net/products'); // Fetch all products
+        if (!response.ok) throw new Error('Erreur réseau');
+        const data = await response.json();
+        setProducts(data.products);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // Filter products based on the search term
+    fetchProducts();
+  }, []);
+
   useEffect(() => {
     if (debouncedSearchTerm) {
       const filtered = products.filter(product =>
@@ -39,38 +38,25 @@ const useProductSearch = (searchTerm) => {
       );
       setFilteredProducts(filtered);
     } else {
-      setFilteredProducts(products); // Show all products if search term is empty
+      setFilteredProducts(products); // Show all products if search is empty
     }
   }, [debouncedSearchTerm, products]);
 
-  // Reload the products (called when user clicks the "Reload" button)
-  const reloadProducts = () => {
-    setPage(1); // Reset to the first page
-    fetchProducts();
-  };
+  // Calculate products to display based on current page
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  // Pagination functionality
-  const nextPage = () => {
-    if (page < totalPages) {
-      setPage(prevPage => prevPage + 1);
-    }
-  };
+  // Pagination controls
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const prevPage = () => {
-    if (page > 1) {
-      setPage(prevPage => prevPage - 1);
-    }
-  };
-
-  return {
-    products: filteredProducts,
-    loading,
+  return { 
+    products: currentProducts, 
+    loading, 
     error,
-    reloadProducts,
-    nextPage,
-    prevPage,
-    page,
-    totalPages,
+    paginate, 
+    currentPage, 
+    totalPages: Math.ceil(filteredProducts.length / productsPerPage)
   };
 };
 

@@ -1,43 +1,40 @@
 import React, { useContext } from 'react';
-import { ThemeContext } from '../contexts/ThemeContext';  // Correct import
-import { LanguageContext } from '../contexts/LanguageContext';  // Import LanguageContext
+import { ThemeContext } from '../contexts/ThemeContext';
+import { LanguageContext } from '../contexts/LanguageContext';
 import useProductSearch from '../hooks/useProductSearch';
 
 const ProductList = ({ searchTerm }) => {
   const { isDarkTheme } = useContext(ThemeContext);
-  const { language } = useContext(LanguageContext);  // Get current language from context
+  const { language } = useContext(LanguageContext);
 
-  // Translation object
   const translations = {
     en: {
       loading: "Loading...",
       error: "Error: ",
       noProductsFound: "No products found.",
       priceLabel: "Price: ",
-      reload: "Reload",
-      next: "Next",
-      prev: "Previous",
+      prevPage: "Previous",
+      nextPage: "Next",
+      reload: "Reload"
     },
     fr: {
       loading: "Chargement...",
       error: "Erreur: ",
       noProductsFound: "Aucun produit trouvé.",
       priceLabel: "Prix: ",
-      reload: "Recharger",
-      next: "Suivant",
-      prev: "Précédent",
-    },
+      prevPage: "Précédent",
+      nextPage: "Suivant",
+      reload: "Recharger"
+    }
   };
 
   const { 
     products, 
     loading, 
     error, 
-    reloadProducts, 
-    nextPage, 
-    prevPage, 
-    page, 
-    totalPages,
+    paginate, 
+    currentPage, 
+    totalPages 
   } = useProductSearch(searchTerm);
 
   if (loading) return (
@@ -54,7 +51,6 @@ const ProductList = ({ searchTerm }) => {
     </div>
   );
 
-  // Filter products by title (case-insensitive match)
   const filteredProducts = products.filter(product =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -90,22 +86,35 @@ const ProductList = ({ searchTerm }) => {
         )}
       </div>
 
-      {/* Pagination Controls */}
-      <div className="d-flex justify-content-between my-4">
-        <button className="btn btn-secondary" onClick={prevPage} disabled={page === 1}>
-          {translations[language].prev}
+      {/* Pagination controls */}
+      <div className="pagination my-4 d-flex justify-content-center">
+        <button 
+          className="btn btn-secondary mx-2"
+          onClick={() => paginate(currentPage - 1)} 
+          disabled={currentPage === 1}
+        >
+          {translations[language].prevPage}
         </button>
-        <span>
-          Page {page} of {totalPages}
+        
+        <span className="mx-2">
+          Page {currentPage} of {totalPages}
         </span>
-        <button className="btn btn-secondary" onClick={nextPage} disabled={page === totalPages}>
-          {translations[language].next}
+
+        <button 
+          className="btn btn-secondary mx-2"
+          onClick={() => paginate(currentPage + 1)} 
+          disabled={currentPage === totalPages}
+        >
+          {translations[language].nextPage}
         </button>
       </div>
 
-      {/* Reload Button */}
-      <div className="text-center">
-        <button className="btn btn-primary" onClick={reloadProducts}>
+      {/* Reload button */}
+      <div className="d-flex justify-content-center">
+        <button 
+          className="btn btn-primary my-4" 
+          onClick={() => window.location.reload()}
+        >
           {translations[language].reload}
         </button>
       </div>

@@ -58,12 +58,12 @@ La solution filtre les produits par title en fonction du searchTerm avant de les
 useDebounce est utilisé pour limiter le nombre de requêtes API en attendant que l'utilisateur ait fini de taper, améliorant ainsi les performances et évitant des appels inutiles.
 [Ajoutez vos captures d'écran]
 
-<img src="/captures/search.png">
-<img src="/captures/search1.png">
+
 ![alt text](captures/search.png)
 
 ```
-
+<img src="/captures/search.png">
+<img src="/captures/search1.png">
 ### Exercice 2 : Context et Internationalisation
 #### Objectif : Gérer les préférences de langue
 
@@ -110,7 +110,7 @@ Expliquez votre solution ici
  
 [Ajoutez vos captures d'écran]
 ```
-<img src="/captures/exercice4.png">
+<img src="/captures/pagination_loadPage.png">
 ## Rendu
 
 - Ajoutez l'URL de votre dépôt Github dans  **Classroom** et envoyer la réponse dès le démarage de votre projet.
