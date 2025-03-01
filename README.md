@@ -73,8 +73,7 @@ useDebounce est utilisé pour limiter le nombre de requêtes API en attendant qu
 
 _Votre réponse pour l'exercice 2 :_
 ```
-This solution is good for translations because it keeps the language and theme settings separate, which makes it easier to manage. Using LanguageProvider and LanguageSelector helps handle translations in a clean way without adding extra complexity to other parts of the app.
-[Ajoutez vos captures d'écran]
+Cette solution est bonne pour les traductions car elle sépare les paramètres de langue et de thème, ce qui facilite leur gestion. L'utilisation de LanguageProvider et LanguageSelector permet de gérer les traductions de manière propre sans compliquer les autres parties de l'application.
 ```
 <img src="/captures/langauge2.png">
 <img src="/captures/language1.png">
