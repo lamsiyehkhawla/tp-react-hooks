@@ -60,7 +60,7 @@ useDebounce est utilisé pour limiter le nombre de requêtes API en attendant qu
 
 <img src="/captures/search.png">
 <img src="/captures/search1.png">
-
+![alt text](captures/search.png)
 
 ```
 
