@@ -110,7 +110,7 @@ Expliquez votre solution ici
  
 [Ajoutez vos captures d'écran]
 ```
-<img src="/captures/pagination_loadPage.png">
+<img src="/captures/pagination_loadPAge.png">
 ## Rendu
 
 - Ajoutez l'URL de votre dépôt Github dans  **Classroom** et envoyer la réponse dès le démarage de votre projet.
